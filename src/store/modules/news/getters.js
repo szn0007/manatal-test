@@ -1,6 +1,6 @@
 export const getLatestHeadlines = (state) => {
   const temp = [];
-  state.news.map((item, index) => {
+  state.news.articles.map((item, index) => {
     if (index > 0 && index < 4) {
       if (!temp[1]) {
         temp[1] = [];
@@ -13,3 +13,5 @@ export const getLatestHeadlines = (state) => {
   });
   return temp;
 };
+
+export const getTotalPages = (state) => Math.ceil(state.news.totalResults / 10);

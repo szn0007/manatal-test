@@ -17,6 +17,17 @@
         </div>
         <news-item-grid :news="news" v-else />
       </v-col>
+
+      <template>
+        <div class="pagination-wrapper">
+          <v-pagination
+            v-model="page"
+            :length="getTotalPages"
+            @next="fetchLatestHeadlines(page)"
+            @previous="fetchLatestHeadlines(page)"
+          ></v-pagination>
+        </div>
+      </template>
     </v-row>
 
   </v-container>
@@ -31,6 +42,7 @@ export default {
   name: 'NewsList',
   data() {
     return {
+      page: 1,
     };
   },
   components: {
@@ -38,10 +50,10 @@ export default {
     NewsItemList,
   },
   computed: {
-    ...mapGetters(['getLatestHeadlines']),
+    ...mapGetters(['getLatestHeadlines', 'getTotalPages']),
   },
   created() {
-    this.fetchLatestHeadlines();
+    this.fetchLatestHeadlines(this.page);
   },
   methods: {
     ...mapActions(['fetchLatestHeadlines']),
@@ -100,5 +112,10 @@ export default {
 }
 .hero-news .v-image{
   max-height: 100%;
+}
+.pagination-wrapper{
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
 }
 </style>
