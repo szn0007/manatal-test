@@ -8,3 +8,15 @@ export const SET_NEWS = (state, news) => {
   };
   state.news = newsData;
 };
+
+export const SET_TITLE = (state, payload) => {
+  state.news.articles = state.news.articles.map((item) => {
+    if (item.id === payload.id) {
+      return {
+        ...item,
+        title: payload.title,
+      };
+    }
+    return item;
+  });
+};

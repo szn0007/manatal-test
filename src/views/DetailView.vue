@@ -4,10 +4,10 @@
       <section class="article-header">
         <div class="article-meta">
           <span class="article-meta__source">
-            {{ articleData.source?.name || 'Anonymous' }}
+            {{ articleData?.source?.name || 'Anonymous' }}
           </span>
           <span class="article-meta__date">
-            {{ articleData.publishedAt }}
+            {{ articleData?.publishedAt }}
           </span>
         </div>
 
@@ -23,19 +23,16 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 const defaultImage = require('../assets/default-image.png');
 
 export default {
   name: 'DetailView',
   computed: {
-    ...mapState(['news']),
+    ...mapGetters(['getDetails']),
     articleData() {
-      if (this.news && this.news.length > 0) {
-        return this.news.find((item) => item.id === Number(this.$route.params.id));
-      }
-      return null;
+      return this.getDetails(this.$route.params.id);
     },
   },
   data() {
