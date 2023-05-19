@@ -98,7 +98,7 @@
             label="Title"
             outlined
             clearable
-            :rules="[rules.required, rules.length]"
+            :rules="rules"
           ></v-text-field>
         </v-card-text>
 
@@ -114,7 +114,7 @@
             Close
           </v-btn>
           <v-btn
-            :disabled="title.length > 255"
+            :disabled="title.trim().length > 255 || title.trim().length === 0"
             depressed
             color="primary"
             @click="updateTitle"
@@ -145,10 +145,10 @@ export default {
       fab: false,
       editTitleDialog: false,
       title: '',
-      rules: {
-        required: (value) => !!value || 'Required.',
-        length: (value) => value.length <= 20 || 'Max 255 characters',
-      },
+      rules: [
+        (value) => !!value || 'Required.',
+        (value) => (value || '').length <= 255 || 'Max 255 characters',
+      ],
     };
   },
   methods: {

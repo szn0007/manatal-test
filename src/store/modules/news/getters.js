@@ -14,6 +14,13 @@ export const getLatestHeadlines = (state) => {
   return temp;
 };
 
+export const sources = (state) => state.sources.map((item) => ({
+  id: item.id,
+  name: item.name,
+}));
+
 export const getTotalPages = (state) => Math.ceil(state.news.totalResults / 10);
 
 export const getDetails = (state) => (id) => state.news.articles.find((item) => item.id === Number(id));
+
+export const isfilterBySource = (state) => state.filterBySource;

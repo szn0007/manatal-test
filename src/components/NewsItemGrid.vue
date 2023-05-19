@@ -4,7 +4,6 @@
       <v-img
         class="news-image"
         :src="news.urlToImage || defaultImage"
-        v-if="news.urlToImage"
       ></v-img>
     </router-link>
 
@@ -88,7 +87,7 @@
           </v-btn>
         </v-card-title>
 
-        <v-card-text class="mt-8" ref="form">
+        <v-card-text class="mt-8">
           <v-text-field
             v-model="title"
             label="Title"
@@ -147,7 +146,6 @@ export default {
         (value) => !!value || 'Required.',
         (value) => (value || '').length <= 255 || 'Max 255 characters',
       ],
-      formHasErrors: false,
     };
   },
   methods: {
