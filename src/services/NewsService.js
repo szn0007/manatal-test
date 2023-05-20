@@ -12,4 +12,7 @@ export default {
   fetchSources() {
     return API.get(`/sources?apiKey=${VUE_APP_API_KEY}`);
   },
+  fetchHeadlinesBySearchQuery(searchQuery) {
+    return API.get(`/top-headlines?q=${searchQuery}&apiKey=${VUE_APP_API_KEY}`);
+  },
 };

@@ -26,3 +26,8 @@ export const fetchSources = async ({ commit }) => {
   const res = await NewsService.fetchSources();
   commit('SET_SOURCES', res.data);
 };
+
+export const fetchHeadlinesBySearchQuery = async ({ commit }, payload) => {
+  const res = await NewsService.fetchHeadlinesBySearchQuery(payload);
+  commit('SET_NEWS', res.data);
+};

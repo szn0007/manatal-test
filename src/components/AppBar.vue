@@ -17,12 +17,13 @@
 
       <v-text-field
         @input="performSearch"
-        v-model="searchQuery"
+        v-model.trim="searchQuery"
         solo-inverted
         dense
         label="Search News"
         prepend-inner-icon="mdi-magnify"
         hide-details
+        :suffix="searchQuery.trim().length > 0 && getTotalResults > 0 ? `${getTotalResults} results found` : ''"
       ></v-text-field>
     </div>
 
@@ -32,6 +33,7 @@
 <script>
 /* eslint-disable */
 import { debounce } from 'lodash';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'AppBar',
@@ -41,9 +43,16 @@ export default {
       debouncedSearch: null,
     };
   },
+  computed: {
+    ...mapGetters(['getTotalResults']),
+  },
   methods: {
+    ...mapActions(['fetchHeadlinesBySearchQuery']),
     performSearch: debounce(function () {
-      console.log('Searching for:', this.searchQuery);
+      // console.log('Searching for:', this.searchQuery);
+      if (this.searchQuery.length > 0) {
+        this.fetchHeadlinesBySearchQuery(this.searchQuery)
+      }
     }, 300), // 300ms debounce delay, adjust as needed
   },
 };
