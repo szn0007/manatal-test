@@ -16,7 +16,7 @@
         <div class="news-meta">
           <span class="news-meta__author">{{ news.author || 'Anonymous' }}</span>
           <span class="divider"> | </span>
-          <span class="news-meta__date">{{ news.publishedAt }}</span>
+          <span class="news-meta__date">{{ formatDate(news.publishedAtpublishedAt) }}</span>
         </div>
       </v-card>
     </v-col>
@@ -128,6 +128,7 @@
 </template>
 <script>
 import { mapActions } from 'vuex';
+import dateMixin from '@/mixins/DateMixin';
 
 const defaultImage = require('../assets/default-image.png');
 
@@ -165,6 +166,9 @@ export default {
       this.editTitleDialog = false;
     },
   },
+  mixins: [
+    dateMixin,
+  ],
 };
 </script>
 <style>

@@ -8,6 +8,7 @@
 
       <v-spacer></v-spacer>
 
+      <!-- Error API Call Button -->
       <v-btn
         depressed
         color="secondary"
@@ -17,6 +18,7 @@
         Error API Call
       </v-btn>
 
+      <!-- History Dialog Button -->
       <v-btn
         depressed
         color="primary"
@@ -26,6 +28,7 @@
         History
       </v-btn>
 
+      <!-- Source Filter Button -->
       <v-menu
         v-model="menu"
         :close-on-content-click="false"
@@ -93,31 +96,10 @@
         </v-card>
       </v-menu>
 
-      <v-dialog
-        v-model="historyDialog"
-        width="500"
-        content-class="history-dialog"
-      >
-        <v-card>
-          <v-card-title class="subtitle-1 font-weight-bold grey lighten-2">
-            History
-          </v-card-title>
-
-          <v-list three-line v-for="(item, index) in getVisitedNews" :key="index">
-            <v-list-item :to="`/details/${item.id}`">
-              <v-list-item-avatar>
-                <v-img :src="item.urlToImage || defaultImage"></v-img>
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title v-html="item.title"></v-list-item-title>
-                <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider inset />
-          </v-list>
-        </v-card>
-      </v-dialog>
+      <history-dialog
+      :news="getVisitedNews"
+      v-model="historyDialog"
+      />
     </v-row>
 
     <v-row>
@@ -133,6 +115,7 @@
         <news-item-grid :news="news" v-else />
       </v-col>
 
+      <!-- Pagination -->
       <template>
         <div class="pagination-wrapper" v-if="getTotalPages > 0">
           <v-pagination
@@ -149,7 +132,6 @@
       v-if="loading"
     >
       <v-progress-circular
-        v-if="loading"
         indeterminate
         :size="70"
         :width="7"
@@ -164,6 +146,7 @@
 import { mapActions, mapGetters, mapState } from 'vuex';
 import NewsItemGrid from '@/components/NewsItemGrid.vue';
 import NewsItemList from '@/components/NewsItemList.vue';
+import HistoryDialog from './HistoryDialog.vue';
 
 const defaultImage = require('../assets/default-image.png');
 
@@ -181,6 +164,7 @@ export default {
   components: {
     NewsItemGrid,
     NewsItemList,
+    HistoryDialog,
   },
   computed: {
     ...mapState({
@@ -274,19 +258,5 @@ export default {
   width: 100%;
   text-align: center;
   margin-top: 40px;
-}
-.news-list .v-dialog__content{
-  height: 100%;
-  display: flex;
-  align-items: stretch;
-  justify-content: flex-end;
-}
-.history-dialog{
-  max-height: 100% !important;
-  height: 100%;
-  margin: 0;
-}
-.history-dialog .v-card{
-  height: 100%;
 }
 </style>

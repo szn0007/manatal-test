@@ -7,7 +7,7 @@
             {{ articleData?.source?.name || 'Anonymous' }}
           </span>
           <span class="article-meta__date">
-            {{ articleData?.publishedAt }}
+            {{ formatDate(articleData?.publishedAt) }}
           </span>
         </div>
 
@@ -24,6 +24,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import dateMixin from '@/mixins/DateMixin';
 
 const defaultImage = require('../assets/default-image.png');
 
@@ -48,6 +49,9 @@ export default {
       id: this.$route.params.id,
     });
   },
+  mixins: [
+    dateMixin,
+  ],
 };
 </script>
 <style>
