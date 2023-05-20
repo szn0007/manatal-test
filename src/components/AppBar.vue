@@ -16,6 +16,8 @@
       <v-spacer />
 
       <v-text-field
+        @input="performSearch"
+        v-model="searchQuery"
         solo-inverted
         dense
         label="Search News"
@@ -28,7 +30,22 @@
 </template>
 
 <script>
+/* eslint-disable */
+import { debounce } from 'lodash';
+
 export default {
+  name: 'AppBar',
+  data() {
+    return {
+      searchQuery: '',
+      debouncedSearch: null,
+    };
+  },
+  methods: {
+    performSearch: debounce(function () {
+      console.log('Searching for:', this.searchQuery);
+    }, 300), // 300ms debounce delay, adjust as needed
+  },
 };
 </script>
 <style>

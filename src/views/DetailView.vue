@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 const defaultImage = require('../assets/default-image.png');
 
@@ -39,6 +39,14 @@ export default {
     return {
       defaultImage,
     };
+  },
+  methods: {
+    ...mapActions(['setHistory']),
+  },
+  created() {
+    this.setHistory({
+      id: this.$route.params.id,
+    });
   },
 };
 </script>

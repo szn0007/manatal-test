@@ -17,6 +17,11 @@ export const setTitle = async ({ commit }, payload) => {
   commit('SET_TITLE', payload);
 };
 
+export const setHistory = async ({ commit }, payload) => {
+  // console.log(payload, 'visited actions');
+  commit('SET_HISTORY', payload);
+};
+
 export const fetchSources = async ({ commit }) => {
   const res = await NewsService.fetchSources();
   commit('SET_SOURCES', res.data);

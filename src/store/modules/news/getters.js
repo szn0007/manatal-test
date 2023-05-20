@@ -24,3 +24,5 @@ export const getTotalPages = (state) => Math.ceil(state.news.totalResults / 10);
 export const getDetails = (state) => (id) => state.news.articles.find((item) => item.id === Number(id));
 
 export const isfilterBySource = (state) => state.filterBySource;
+
+export const getVisitedNews = (state) => state.history;

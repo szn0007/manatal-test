@@ -37,3 +37,14 @@ export const SET_TITLE = (state, payload) => {
 export const SET_SOURCES = (state, payload) => {
   state.sources = payload.sources;
 };
+
+export const SET_HISTORY = (state, payload) => {
+  // console.log(state.history, 'state.history');
+  const news = state.news.articles.find((item) => Number(item.id) === Number(payload.id));
+  // console.log(payload, 'payload');
+  const isAlreadyExists = state.history.some((item) => Number(item.id) === Number(payload.id));
+  // console.log(isAlreadyExists, 'isAlreadyExists');
+  if (!isAlreadyExists) {
+    state.history.push(news);
+  }
+};
