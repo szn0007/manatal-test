@@ -48,3 +48,7 @@ export const SET_HISTORY = (state, payload) => {
     state.history.push(news);
   }
 };
+
+export const SET_LOADING = (state, value) => {
+  state.loading = value;
+};

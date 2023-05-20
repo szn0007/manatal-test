@@ -1,12 +1,21 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="news-list">
       <h1 class="section-title mb-4">
         Latest
         <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
       </h1>
 
       <v-spacer></v-spacer>
+
+      <v-btn
+        depressed
+        color="secondary"
+        class="mr-4"
+        @click="errorAPICall"
+      >
+        Error API Call
+      </v-btn>
 
       <v-btn
         depressed
@@ -125,7 +134,7 @@
       </v-col>
 
       <template>
-        <div class="pagination-wrapper">
+        <div class="pagination-wrapper" v-if="getTotalPages > 0">
           <v-pagination
             v-model="page"
             :length="getTotalPages"
@@ -135,11 +144,24 @@
       </template>
     </v-row>
 
+    <v-overlay
+      :opacity="0.5"
+      v-if="loading"
+    >
+      <v-progress-circular
+        v-if="loading"
+        indeterminate
+        :size="70"
+        :width="7"
+        color="purple"
+      ></v-progress-circular>
+    </v-overlay>
+
   </v-container>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 import NewsItemGrid from '@/components/NewsItemGrid.vue';
 import NewsItemList from '@/components/NewsItemList.vue';
 
@@ -161,6 +183,9 @@ export default {
     NewsItemList,
   },
   computed: {
+    ...mapState({
+      loading: (state) => state.news.loading,
+    }),
     ...mapGetters(['getLatestHeadlines', 'getTotalPages', 'sources', 'isfilterBySource', 'getVisitedNews']),
   },
   mounted() {
@@ -168,7 +193,7 @@ export default {
     this.fetchSources();
   },
   methods: {
-    ...mapActions(['fetchLatestHeadlines', 'fetchSources', 'fetchHeadlinesBySources']),
+    ...mapActions(['fetchLatestHeadlines', 'fetchSources', 'fetchHeadlinesBySources', 'errorAPICall']),
     resetSelectedSources() {
       this.selectedSources = [];
       this.fetchLatestHeadlines(this.page);
@@ -250,7 +275,7 @@ export default {
   text-align: center;
   margin-top: 40px;
 }
-.v-dialog__content{
+.news-list .v-dialog__content{
   height: 100%;
   display: flex;
   align-items: stretch;

@@ -3,4 +3,5 @@ export default {
   sources: [],
   filterBySource: false,
   history: [],
+  loading: false,
 };
