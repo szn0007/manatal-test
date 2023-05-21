@@ -3,10 +3,20 @@
     v-model="internalHistoryDialog"
     width="500"
     content-class="history-dialog"
+    transition="dialog-right-transition"
   >
     <v-card>
       <v-card-title class="subtitle-1 font-weight-bold grey lighten-2">
         History
+
+        <v-spacer></v-spacer>
+
+        <v-btn
+          icon
+          @click="internalHistoryDialog = false"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
 
       <v-card-text v-if="news.length > 0">
@@ -25,8 +35,8 @@
         </v-list>
       </v-card-text>
 
-      <v-card-text>
-        <h3>No history found.</h3>
+      <v-card-text v-else>
+        <h3 class="mt-4">No history found......</h3>
       </v-card-text>
     </v-card>
   </v-dialog>

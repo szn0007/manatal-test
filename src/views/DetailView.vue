@@ -108,4 +108,12 @@ export default {
   max-width: 720px;
   border-radius: 8px;
 }
+@media only screen and (max-width: 600px) {
+  .article-header h1{
+    font-size: 24px;
+  }
+  .article-featured-image{
+    margin: 20px 0 30px;
+  }
+}
 </style>
