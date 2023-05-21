@@ -12,7 +12,7 @@ export default {
       }
       throw new Error('Failed to fetch headlines');
     } catch (error) {
-      console.error('An error occurred while fetching headlines:', error);
+      // console.error('An error occurred while fetching headlines:', error);
       throw error.response.data.message;
     }
   },
@@ -25,7 +25,7 @@ export default {
       }
       throw new Error('Failed to fetch headlines');
     } catch (error) {
-      console.error('An error occurred while fetching headlines:', error);
+      // console.error('An error occurred while fetching headlines:', error);
       throw error.response.data.message;
     }
   },
@@ -38,33 +38,33 @@ export default {
       }
       throw new Error('Failed to fetch sources');
     } catch (error) {
-      console.error('An error occurred while fetching sources:', error);
+      // console.error('An error occurred while fetching sources:', error);
       throw error.response.data.message;
     }
   },
   async fetchHeadlinesBySearchQuery(searchQuery) {
     try {
       const res = await API.get(`/top-headlines?q=${searchQuery}&apiKey=${VUE_APP_API_KEY}`);
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) {
         return res;
       }
       throw new Error('Failed to fetch headlines');
     } catch (error) {
-      console.error('An error occurred while fetching headlines:', error);
+      // console.error('An error occurred while fetching headlines:', error);
       throw error.response.data.message;
     }
   },
   async errorAPICall() {
     try {
       const res = await API.get('https://newsapi.org/v2/sources?apiKey');
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) {
         return res;
       }
       throw new Error('Failed to fetch headlines');
     } catch (error) {
-      console.error('An error occurred while fetching headlines:', error);
+      // console.error('An error occurred while fetching headlines:', error);
       throw error.response.data.message;
     }
   },
