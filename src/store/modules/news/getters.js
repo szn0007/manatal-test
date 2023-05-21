@@ -1,6 +1,6 @@
 export const getLatestHeadlines = (state) => {
   const temp = [];
-  state.news.articles.map((item, index) => {
+  state?.news?.articles?.map((item, index) => {
     if (index > 0 && index < 4) {
       if (!temp[1]) {
         temp[1] = [];
@@ -21,9 +21,9 @@ export const sources = (state) => state.sources.map((item) => ({
 
 export const getTotalPages = (state) => Math.ceil(state.news.totalResults / 10);
 
-export const getTotalResults = (state) => state.news.totalResults;
+export const getTotalResults = (state) => state?.news.totalResults;
 
-export const getDetails = (state) => (id) => state.news.articles.find((item) => item.id === Number(id));
+export const getDetails = (state) => (id) => state?.news.articles.find((item) => item.id === Number(id));
 
 export const isfilterBySource = (state) => state.filterBySource;
 

@@ -102,7 +102,7 @@
       />
     </v-row>
 
-    <v-row>
+    <v-row v-if="getLatestHeadlines.length > 0">
       <v-col
       :cols="index < 2 ? '6' : '4'"
       :class="(index === 1) ? 'list-news news-card' : (index === 0) ? 'grid-news hero-news news-card' : 'grid-news news-card'"
@@ -125,6 +125,11 @@
           ></v-pagination>
         </div>
       </template>
+    </v-row>
+
+    <v-row v-else class="flex-column mt-4">
+      <v-img src="../assets/no-data.svg" height="500" contain />
+      <h3 class="text-center">Please try again in a while........</h3>
     </v-row>
 
     <v-overlay
@@ -258,5 +263,8 @@ export default {
   width: 100%;
   text-align: center;
   margin-top: 40px;
+}
+#webpack-dev-server-client-overlay{
+  display: none !important;
 }
 </style>

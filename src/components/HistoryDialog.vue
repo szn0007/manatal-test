@@ -9,19 +9,25 @@
         History
       </v-card-title>
 
-      <v-list three-line v-for="(item, index) in news" :key="index">
-        <v-list-item :to="`/details/${item.id}`">
-          <v-list-item-avatar>
-            <v-img :src="item.urlToImage || defaultImage"></v-img>
-          </v-list-item-avatar>
+      <v-card-text v-if="news.length > 0">
+        <v-list three-line v-for="(item, index) in news" :key="index">
+          <v-list-item :to="`/details/${item.id}`">
+            <v-list-item-avatar>
+              <v-img :src="item.urlToImage || defaultImage"></v-img>
+            </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title v-html="item.title"></v-list-item-title>
-            <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider inset />
-      </v-list>
+            <v-list-item-content>
+              <v-list-item-title v-html="item.title"></v-list-item-title>
+              <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider inset />
+        </v-list>
+      </v-card-text>
+
+      <v-card-text>
+        <h3>No history found.</h3>
+      </v-card-text>
     </v-card>
   </v-dialog>
 </template>
