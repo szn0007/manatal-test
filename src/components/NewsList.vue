@@ -186,7 +186,7 @@ export default {
   methods: {
     ...mapActions(['fetchLatestHeadlines', 'fetchSources', 'fetchHeadlinesBySources', 'errorAPICall']),
     resetSelectedSources() {
-      console.log('here');
+      // console.log('here');
       this.selectedSources = [];
       this.menu = false;
       this.fetchLatestHeadlines(this.page);
