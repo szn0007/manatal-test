@@ -36,7 +36,7 @@
       </v-card-text>
 
       <v-card-text v-else>
-        <h3 class="mt-4">No history found......</h3>
+        <h3 class="mt-4 no-history-found">No history found......</h3>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -53,7 +53,9 @@ export default {
     };
   },
   props: {
-    value: Boolean,
+    value: {
+      type: Boolean,
+    },
     news: {
       type: Array,
       required: true,
