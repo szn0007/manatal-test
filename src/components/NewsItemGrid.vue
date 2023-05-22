@@ -48,24 +48,39 @@
           </v-icon>
         </v-btn>
       </template>
-      <v-btn
-        fab
-        dark
-        x-small
-        color="primary"
-        @click="editTitle"
-      >
-        <v-icon color="white">mdi-pencil</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        x-small
-        color="primary"
-        :to="`/details/${news.id}`"
-      >
-        <v-icon color="white">mdi-redo</v-icon>
-      </v-btn>
+      <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            fab
+            dark
+            x-small
+            color="primary"
+            v-bind="attrs"
+            v-on="on"
+            @click="editTitle"
+          >
+          <v-icon color="white">mdi-pencil</v-icon>
+          </v-btn>
+        </template>
+        <span>Edit Title</span>
+      </v-tooltip>
+
+      <v-tooltip right>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            fab
+            dark
+            x-small
+            color="primary"
+            v-bind="attrs"
+            v-on="on"
+            :to="`/details/${news.id}`"
+          >
+            <v-icon color="white">mdi-redo</v-icon>
+          </v-btn>
+        </template>
+        <span>View News</span>
+      </v-tooltip>
     </v-speed-dial>
 
     <v-dialog
@@ -74,7 +89,7 @@
     >
       <v-card>
         <v-card-title class="text-h6 primary white--text" dense>
-          Privacy Policy
+          Edit News Title
 
           <v-spacer></v-spacer>
 

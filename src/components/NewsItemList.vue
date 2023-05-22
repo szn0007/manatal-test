@@ -79,7 +79,7 @@
     >
       <v-card>
         <v-card-title class="text-h6 primary white--text" dense>
-          Privacy Policy
+          Edit News Title
 
           <v-spacer></v-spacer>
 
